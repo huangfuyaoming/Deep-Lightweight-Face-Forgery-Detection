@@ -8,13 +8,13 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-模型-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
-[![任务](https://img.shields.io/badge/任务-人脸伪造检测-00C2FF)](#方法概述)
+[![任务](https://img.shields.io/badge/任务-人脸伪造检测-00C2FF)](#method)
 [![论文](https://img.shields.io/badge/论文-Springer-6F42C1)](https://doi.org/10.1007/s11042-026-21154-4)
 [![DOI](https://img.shields.io/badge/DOI-10.1007%2Fs11042--026--21154--4-2D6CDF)](https://doi.org/10.1007/s11042-026-21154-4)
 
 [English](README.md) · **简体中文**
 
-[论文](https://doi.org/10.1007/s11042-026-21154-4) · [网络结构](#网络结构) · [快速开始](#快速开始) · [引用](#引用)
+[论文](#paper) · [网络结构](#architecture) · [快速开始](#quick-start) · [引用](#citation)
 
 </div>
 
@@ -27,6 +27,8 @@
 为解决这一问题，我们提出了一种融合多尺度全局特征与自适应加权通道自注意力的轻量级人脸伪造检测网络。我们的目标是在保持检测性能和鲁棒性的同时，降低模型的参数量与计算开销，使其更适合部署在边缘设备、移动终端和流媒体检测等资源受限场景中。
 
 本仓库提供该研究相关的 PyTorch 核心网络实现。
+
+<a id="paper"></a>
 
 ## 📄 论文信息
 
@@ -47,6 +49,8 @@ Haojun Xu · Yonghang Fu · **Yudong Wu<sup>✉</sup>** · Fengyong Li
 | ⚡ 轻量高效 | 🧠 伪影感知 | 📡 面向部署 |
 | :---: | :---: | :---: |
 | 深度可分离卷积有效控制模型复杂度 | 局部与全局通道交互增强特征表达 | 宽度系数支持不同算力配置 |
+
+<a id="method"></a>
 
 ## 🧩 方法概述
 
@@ -71,6 +75,8 @@ Y = X + 0.1 × (Local(X) + Global(X))
 ### 可调节网络宽度
 
 `ResidualNN` 提供宽度系数 `alpha`，用于统一调整各阶段的通道数量；`make_divisible` 则将通道数对齐到指定整数倍。通过这一设计，可以根据目标设备的算力和内存条件调整模型规模。
+
+<a id="architecture"></a>
 
 ## 🏗️ 网络结构
 
@@ -117,6 +123,8 @@ Deep-Lightweight-Face-Forgery-Detection/
 | `make_divisible` | 根据宽度系数调整通道数 |
 | `ResidualNN` | 完整的轻量级二分类网络 |
 
+<a id="quick-start"></a>
+
 ## ⚙️ 快速开始
 
 ### 环境要求
@@ -149,6 +157,8 @@ print(scores.shape)  # torch.Size([4, 1])
 ```
 
 当前示例使用随机初始化模型演示代码接口。仓库暂未包含训练权重、数据预处理流程、训练脚本和评估脚本。
+
+<a id="citation"></a>
 
 ## 📝 引用
 

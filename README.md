@@ -14,7 +14,7 @@
 
 **English** · [简体中文](README_zh-CN.md)
 
-[Paper](https://doi.org/10.1007/s11042-026-21154-4) · [Architecture](#architecture) · [Quick Start](#quick-start) · [Citation](#citation)
+[Paper](#paper) · [Architecture](#architecture) · [Quick Start](#quick-start) · [Citation](#citation)
 
 </div>
 
@@ -27,6 +27,8 @@ The rapid development of face generation and manipulation technologies has made 
 To address this problem, we propose a deep lightweight face forgery detection network that combines multi-scale global features with adaptive weighted channel self-attention. Our goal is to balance detection performance, robustness, and computational efficiency, making the model suitable for resource-constrained applications such as edge devices, mobile platforms, and streaming media analysis.
 
 This repository provides the core PyTorch implementation associated with our research.
+
+<a id="paper"></a>
 
 ## 📄 Paper
 
@@ -47,6 +49,8 @@ Haojun Xu · Yonghang Fu · **Yudong Wu<sup>✉</sup>** · Fengyong Li
 | ⚡ Lightweight | 🧠 Artifact-aware | 📡 Deployment-oriented |
 | :---: | :---: | :---: |
 | Depthwise separable convolutions reduce model complexity. | Local and global channel interactions strengthen feature representation. | An adjustable width multiplier supports different compute budgets. |
+
+<a id="method"></a>
 
 ## 🧩 Method
 
@@ -71,6 +75,8 @@ The fused representation is projected back to the original channel dimension. A 
 ### Adjustable network width
 
 The `ResidualNN` model exposes an `alpha` width multiplier for scaling the number of channels. The `make_divisible` utility aligns channel counts to a specified divisor, allowing the model size to be adapted to the memory and computing capacity of the target device.
+
+<a id="architecture"></a>
 
 ## 🏗️ Architecture
 
@@ -117,6 +123,8 @@ The main components in `SAE.py` are:
 | `make_divisible` | Adjusts channel counts according to the width multiplier |
 | `ResidualNN` | Complete lightweight binary classification network |
 
+<a id="quick-start"></a>
+
 ## ⚙️ Quick Start
 
 ### Requirements
@@ -149,6 +157,8 @@ print(scores.shape)  # torch.Size([4, 1])
 ```
 
 The included example uses a randomly initialized model to demonstrate the interface. Trained weights, data preprocessing, training scripts, and evaluation scripts are not included in the current repository.
+
+<a id="citation"></a>
 
 ## 📝 Citation
 
