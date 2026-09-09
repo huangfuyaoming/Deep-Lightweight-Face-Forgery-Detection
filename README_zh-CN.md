@@ -1,12 +1,26 @@
-# 轻量级人脸伪造检测
-
 <div align="center">
 
-[English](README.md) | **简体中文**
+![轻量级人脸伪造检测](banner.svg)
+
+# 轻量级人脸伪造检测
+
+### 多尺度全局特征 · 自适应通道注意力 · 面向边缘部署
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-模型-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![任务](https://img.shields.io/badge/任务-人脸伪造检测-00C2FF)](#方法概述)
+[![论文](https://img.shields.io/badge/论文-Springer-6F42C1)](https://doi.org/10.1007/s11042-026-21154-4)
+[![DOI](https://img.shields.io/badge/DOI-10.1007%2Fs11042--026--21154--4-2D6CDF)](https://doi.org/10.1007/s11042-026-21154-4)
+
+[English](README.md) · **简体中文**
+
+[论文](https://doi.org/10.1007/s11042-026-21154-4) · [网络结构](#网络结构) · [快速开始](#快速开始) · [引用](#引用)
 
 </div>
 
-## 项目简介
+> 面向边缘设备、移动终端和流媒体场景的轻量级、伪影感知人脸伪造检测网络。
+
+## ✨ 项目简介
 
 随着人脸生成与编辑技术快速发展，伪造人脸在视觉上的真实感不断提高，给内容可信度、身份认证和数字媒体安全带来了新的挑战。现有检测方法往往依赖局部视觉伪影或空间异常，但这些线索容易受到图像压缩、分辨率变化和对抗扰动等因素影响，导致模型在复杂场景中的检测性能下降。
 
@@ -14,15 +28,27 @@
 
 本仓库提供该研究相关的 PyTorch 核心网络实现。
 
-## 论文信息
+## 📄 论文信息
 
-**论文题目：** Deep lightweight face forgery detection network using multi-scale global features and adaptive weighted channel self-attention  
-**作者：** Haojun Xu, Yonghang Fu, Yudong Wu<sup>✉</sup>, Fengyong Li  
-<sup>✉</sup> 通讯作者邮箱：[w9687777@163.com](mailto:w9687777@163.com)  
-**期刊：** Multimedia Tools and Applications, Volume 85, Article 67, 2026  
-**DOI：** [10.1007/s11042-026-21154-4](https://doi.org/10.1007/s11042-026-21154-4)
+<div align="center">
 
-## 方法概述
+**Deep lightweight face forgery detection network using multi-scale global features and adaptive weighted channel self-attention**
+
+Haojun Xu · Yonghang Fu · **Yudong Wu<sup>✉</sup>** · Fengyong Li
+
+*Multimedia Tools and Applications*, Volume 85, Article 67, 2026
+
+[DOI](https://doi.org/10.1007/s11042-026-21154-4) · <sup>✉</sup> 通讯作者：[w9687777@163.com](mailto:w9687777@163.com)
+
+</div>
+
+## 🚀 项目亮点
+
+| ⚡ 轻量高效 | 🧠 伪影感知 | 📡 面向部署 |
+| :---: | :---: | :---: |
+| 深度可分离卷积有效控制模型复杂度 | 局部与全局通道交互增强特征表达 | 宽度系数支持不同算力配置 |
+
+## 🧩 方法概述
 
 ### 轻量级特征提取
 
@@ -46,43 +72,37 @@ Y = X + 0.1 × (Local(X) + Global(X))
 
 `ResidualNN` 提供宽度系数 `alpha`，用于统一调整各阶段的通道数量；`make_divisible` 则将通道数对齐到指定整数倍。通过这一设计，可以根据目标设备的算力和内存条件调整模型规模。
 
-## 网络结构
+## 🏗️ 网络结构
 
 以默认配置 `alpha=1.0` 和 `224 × 224` RGB 图像为例，代码中的数据流如下：
 
-```text
-输入图像 [B, 3, 224, 224]
-        │
-        ▼
-3×3 Conv + BN + LeakyReLU
-        │
-        ▼
-伪影感知 SE 模块
-        │
-        ▼
-5 × 深度可分离卷积模块
-        │
-        ▼
-伪影感知 SE 模块
-        │
-        ▼
-全局平均池化
-        │
-        ▼
-全连接层 + Sigmoid
-        │
-        ▼
-二分类分数 [B, 1]
+```mermaid
+flowchart LR
+    A["RGB 输入<br/>B × 3 × 224 × 224"] --> B["3×3 卷积<br/>BN + LeakyReLU"]
+    B --> C["伪影感知<br/>SE 模块"]
+    C --> D["5 × 深度可分离<br/>卷积模块"]
+    D --> E["伪影感知<br/>SE 模块"]
+    E --> F["全局平均池化"]
+    F --> G["全连接层 + Sigmoid"]
+    G --> H["二分类分数<br/>B × 1"]
+
+    classDef input fill:#102a56,stroke:#30e3ff,color:#fff,stroke-width:2px;
+    classDef block fill:#1c2351,stroke:#8b6cff,color:#fff,stroke-width:2px;
+    classDef output fill:#123c4a,stroke:#46edc8,color:#fff,stroke-width:2px;
+    class A input;
+    class B,C,D,E,F,G block;
+    class H output;
 ```
 
 默认通道数依次为 `32 → 64 → 128 → 128 → 256 → 256`。
 
-## 仓库结构
+## 📁 仓库结构
 
 ```text
 Deep-Lightweight-Face-Forgery-Detection/
 ├── README.md          # 英文项目介绍
 ├── README_zh-CN.md    # 中文项目介绍
+├── banner.svg         # 项目横幅
 └── SAE.py             # 网络定义与最小运行示例
 ```
 
@@ -97,7 +117,7 @@ Deep-Lightweight-Face-Forgery-Detection/
 | `make_divisible` | 根据宽度系数调整通道数 |
 | `ResidualNN` | 完整的轻量级二分类网络 |
 
-## 快速开始
+## ⚙️ 快速开始
 
 ### 环境要求
 
@@ -130,7 +150,7 @@ print(scores.shape)  # torch.Size([4, 1])
 
 当前示例使用随机初始化模型演示代码接口。仓库暂未包含训练权重、数据预处理流程、训练脚本和评估脚本。
 
-## 引用
+## 📝 引用
 
 如果本项目对您的研究有所帮助，欢迎引用我们的论文：
 
