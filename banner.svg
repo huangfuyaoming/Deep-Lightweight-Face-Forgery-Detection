@@ -1,0 +1,53 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="20" x2="1120" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06162D"/>
+      <stop offset="0.52" stop-color="#102A56"/>
+      <stop offset="1" stop-color="#24134D"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="760" y1="60" x2="1050" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#30E3FF"/>
+      <stop offset="1" stop-color="#9A6CFF"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientTransform="translate(930 180) rotate(90) scale(170 230)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#25D9FF" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#25D9FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="24" fill="url(#halo)"/>
+
+  <g opacity=".14" stroke="#72E7FF">
+    <path d="M0 55H1200M0 110H1200M0 165H1200M0 220H1200M0 275H1200M0 330H1200"/>
+    <path d="M70 0V360M140 0V360M210 0V360M280 0V360M350 0V360M420 0V360M490 0V360M560 0V360M630 0V360M700 0V360M770 0V360M840 0V360M910 0V360M980 0V360M1050 0V360M1120 0V360"/>
+  </g>
+
+  <g opacity=".65" fill="#38DFF5">
+    <circle cx="71" cy="55" r="3"/><circle cx="210" cy="165" r="3"/><circle cx="420" cy="110" r="3"/>
+    <circle cx="560" cy="275" r="3"/><circle cx="700" cy="55" r="3"/><circle cx="1120" cy="275" r="3"/>
+  </g>
+
+  <text x="76" y="115" fill="#88ECFF" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" letter-spacing="4">TRUSTWORTHY AI · DIGITAL FORENSICS</text>
+  <text x="72" y="176" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700">Deep Lightweight</text>
+  <text x="72" y="226" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700">Face Forgery Detection</text>
+  <text x="76" y="270" fill="#B9CBE6" font-family="Arial, Helvetica, sans-serif" font-size="18">Efficient · Robust · Artifact-Aware</text>
+
+  <g transform="translate(820 35)">
+    <ellipse cx="140" cy="145" rx="123" ry="135" stroke="#39DEF7" stroke-opacity=".2" stroke-width="2"/>
+    <path d="M140 30C92 30 62 68 62 118C62 172 84 224 140 259C196 224 218 172 218 118C218 68 188 30 140 30Z" stroke="url(#glow)" stroke-width="4"/>
+    <path d="M140 31V259M64 116H216M80 72L201 197M200 72L79 198" stroke="#4DDFF6" stroke-opacity=".24" stroke-width="2"/>
+    <path d="M92 118C101 105 117 105 126 118M154 118C163 105 179 105 188 118M112 184C128 195 152 195 168 184" stroke="#B6F6FF" stroke-width="4" stroke-linecap="round"/>
+    <g fill="#6DEBFF">
+      <circle cx="62" cy="118" r="5"/><circle cx="218" cy="118" r="5"/><circle cx="140" cy="30" r="5"/>
+      <circle cx="140" cy="259" r="5"/><circle cx="80" cy="72" r="4"/><circle cx="200" cy="72" r="4"/>
+      <circle cx="79" cy="198" r="4"/><circle cx="201" cy="197" r="4"/>
+    </g>
+    <path d="M140 18V2M226 59L243 48M232 145H253M226 230L243 242M54 59L37 48M48 145H27M54 230L37 242" stroke="#906DFF" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="358" rx="23" stroke="url(#glow)" stroke-opacity=".45" stroke-width="2"/>
+</svg>
